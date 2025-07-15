@@ -2,6 +2,8 @@ from flask import Flask,render_template
 
 app = Flask(__name__)
 
+lista_usuarios = ['Lucas', 'João', 'Didi', 'Alessandra', 'Amanda']
+
 @app.route('/')
 def hello_world():
     return render_template('home.html')
@@ -9,6 +11,11 @@ def hello_world():
 @app.route('/contato')
 def contato():
     return render_template('contato.html')
+
+@app.route('/usuarios')
+def usuarios():
+    
+    return render_template('usuarios.html', lista_usuarios=lista_usuarios)
 
 if __name__ == '__main__':
     app.run(debug=True)
