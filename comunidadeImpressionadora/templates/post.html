@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container my-5">
+
+  <!-- Título -->
+  <h3 class="mb-4 text-center" data-aos="fade-right" data-aos-duration="800">Editar Post</h3>
+
+  <!-- Post atual -->
+  <div class="row border rounded p-3 mb-4 shadow-sm meupost" data-aos="fade-up" data-aos-duration="800" data-aos-once="true">
+    <div class="col-md-3 d-flex justify-content-center align-items-center">
+      <div class="image mb-3">
+        <img src="{{ url_for('static', filename='fotos_perfil/' ~ post.autor.foto_perfil) }}" class="rounded-circle img-fluid" style="max-width: 140px;">
+        <p class="mt-2">Habilidades</p>
+        {% if post.autor.cursos %}
+          {% for habilidade in post.autor.cursos.split(';') %}
+            <span class="badge bg-primary me-1">{{ habilidade }}</span>
+          {% endfor %}
+        {% else %}
+          <span class="text-muted">Nenhuma habilidade informada</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="col-md-9">
+      <h4 class="fw-semibold" style="color: #254eda;">{{ post.titulo }} <small class="text-muted" style="font-size: 15px;"> - Data de Criação: {{post.data_criacao.strftime('%d/%m/%Y')}}
+      {% if form%}
+        - <a href="#form_editarpost">Editar Post</a> / <a href="#"class='text-danger' data-bs-toggle="modal" data-bs-target="#exampleModal">Excluir Post</a>
+        {%endif%}
+      </small>
+
+      </h4>
+      <p>{{ post.corpo }}</p>
+      <small class="text-muted">Autor: {{ post.autor.username }}</small>
+    </div>
+  </div>
+
+  <!-- Formulário de edição -->
+  {% if form %}
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow" data-aos="fade-up" data-aos-duration="800">
+        <div class="card-body">
+          <h5 class="card-title text-center mb-4">Editar este Post</h5>
+
+          <form method="POST" id="form_editarpost" action="{{ url_for('editar_post', post_id=post.id) }}">
+            {{ form.hidden_tag() }}
+
+            <div class="mb-3">
+              {{ form.titulo.label(class="form-label") }}
+              {{ form.titulo(class="form-control", placeholder="Digite o título do post") }}
+              {% if form.titulo.errors %}
+                <div class="text-danger">
+                  {% for erro in form.titulo.errors %}
+                    {{ erro }}
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="mb-3">
+              {{ form.corpo.label(class="form-label") }}
+              {{ form.corpo(class="form-control", placeholder="Digite o conteúdo do post", rows="6") }}
+              {% if form.corpo.errors %}
+                <div class="text-danger">
+                  {% for erro in form.corpo.errors %}
+                    {{ erro }}
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="d-grid">
+              <button type="submit" class="btn btn-success">Salvar Alterações</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Excluir Post</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Deseja excluir esse post? (Essa ação não pode ser desfeita)
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <form method="post"  action="{{url_for('excluir_post',post_id=post.id)}}">
+        <button type="submit" class="btn btn-danger">Excluir Post</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+{% endblock %}

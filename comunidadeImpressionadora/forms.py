@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from comunidadeImpressionadora.models import Usuario
 from flask_login import current_user
@@ -35,14 +35,15 @@ class FormEditarPerfil(FlaskForm):
     email = StringField('E-mail', validators=[DataRequired(), Email()])
     foto_perfil = FileField('Atualizar Foto de Perfil', validators=[FileAllowed(['jpg', 'png','JPEG'])])
     
-    # Cursos
-    curso_excel = BooleanField('Excel Impressionador')
-    curso_vba = BooleanField('VBA Impressionador')
-    curso_powerbi = BooleanField('Power BI Impressionador')
-    curso_python = BooleanField('Python Impressionador')
-    curso_sql = BooleanField('SQL Impressionador')
-    curso_html_css_js = BooleanField('HTML, CSS e JavaScript Impressionador')
-    curso_ciencia_dados = BooleanField('Ciência de Dados Impressionadora')
+        # Cursos
+    curso_excel = BooleanField('Excel Avançado')
+    curso_vba = BooleanField('Automação VBA')
+    curso_powerbi = BooleanField('Dashboards Power BI')
+    curso_python = BooleanField('Programação Python')
+    curso_sql = BooleanField('SQL e Banco de Dados')
+    curso_html_css_js = BooleanField('Desenvolvimento Web')
+    curso_ciencia_dados = BooleanField('Ciência de Dados')
+
     
     # Botão de submit
     botao_submit_editarperfil = SubmitField('Salvar Alterações')
@@ -52,4 +53,15 @@ class FormEditarPerfil(FlaskForm):
             usuario = Usuario.query.filter_by(email=email.data).first()
             if usuario:
                 raise ValidationError('E-mail já cadastrado. Cadastre-se com outro e-mail ou faça login para continuar.')
+            
 
+class FormCriarPost(FlaskForm):
+    titulo = StringField('Título do Post', validators=[DataRequired(), Length(2,140)])
+    corpo = TextAreaField('Escreva seu Post Aqui', validators=[DataRequired()])
+    botao_submit = SubmitField('Criar Post')
+
+
+class FormEditarPost(FlaskForm):
+    titulo = StringField('Título do Post', validators=[DataRequired(), Length(2,140)])
+    corpo = TextAreaField('Edite seu Post Aqui', validators=[DataRequired()])
+    botao_submit_editar = SubmitField('Salvar Alterações')

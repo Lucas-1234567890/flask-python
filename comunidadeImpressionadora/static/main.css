@@ -6,11 +6,6 @@
   border-radius: 10px;
   background-color: #fff;
 }
-
-
-
-
-
 .stats{
 
       background: #f2f5f8 !important;
@@ -47,3 +42,7 @@
   align-items: center;
 }
 
+.meupost {
+    background: #f2f5f8 !important;
+    
+}

@@ -1,10 +1,45 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<div class="container">
-    <h1 data-aos="fade-up">Olá, esse é o meu primeiro site em Python</h1>
-    <h2 data-aos="fade-right">Testando novo arquivo</h2>
-    <p data-aos="fade-left">Esse parágrafo entra da esquerda.</p>
-    <button data-aos="zoom-in">Botão</button>
+<div class="container my-5">
+
+  <!-- Título principal com animação -->
+  <div data-aos="fade-down" data-aos-duration="1000" class="text-center mb-5">
+    <h1 class="display-4 fw-bold" style="color: #3366ff;">
+      Bem-vindo ao Meu Site Python
+    </h1>
+    <p class="lead text-muted">
+      Aqui você vê os posts que aparecem conforme você desce a página
+    </p>
+    <hr class="w-25 mx-auto" style="border-top: 3px solid #3366ff;">
+  </div>
+
+  <!-- Posts com efeito fade-up conforme scroll -->
+  <h3 class="mb-4" data-aos="fade-right" data-aos-duration="800">Posts</h3>
+
+  {% for post in posts %}
+    <div class="row border rounded p-3 mb-4 shadow-sm meupost" data-aos="fade-up" data-aos-duration="800" data-aos-once="true">
+      <div class="col-md-3 d-flex justify-content-center align-items-center">
+        <div class="image mb-3">
+          <img src="{{ url_for('static', filename='fotos_perfil/' ~ post.autor.foto_perfil) }}" class="rounded-circle img-fluid" style="max-width: 140px;">
+          <p>Habilidades</p>
+            {% if post.autor.cursos %}
+            {% for habilidade in post.autor.cursos.split(';') %}
+                <span class="badge bg-primary me-1">{{ habilidade }}</span>
+            {% endfor %}
+            {% else %}
+            <span class="text-muted">Nenhuma habilidade informada</span>
+            {% endif %}
+
+        </div>
+      </div>
+      <div class="col-md-9">
+        <a style="text-decoration: none;" href="{{url_for('editar_post', post_id=post.id)}}"><h4 class="fw-semibold" style="color: #254eda;">{{ post.titulo }}</h4></a>
+        <p>{{ post.corpo }}</p>
+        <small class="text-muted">Autor: {{ post.autor.username }}</small>
+      </div>
+    </div>
+  {% endfor %}
+
 </div>
 {% endblock %}

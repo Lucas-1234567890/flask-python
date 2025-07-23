@@ -1,8 +1,47 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<div class="container">
-    <h1>criar post</h1>
-</div>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Criar Post</h2>
+
+          <form method="POST" action="{{ url_for('criar_post') }}">
+            {{ form.hidden_tag() }}
+
+            <div class="mb-3">
+              {{ form.titulo.label(class="form-label") }}
+              {{ form.titulo(class="form-control", placeholder="Digite o título do post") }}
+              {% if form.titulo.errors %}
+                <div class="text-danger">
+                  {% for erro in form.titulo.errors %}
+                    {{ erro }}
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+
+               <div class="mb-3">
+               {{ form.corpo.label(class="form-label") }}
+               {{ form.corpo(class="form-control", placeholder="Digite o conteúdo do post", rows="8") }}
+               {% if form.corpo.errors %}
+                   <div class="text-danger">
+                   {% for erro in form.corpo.errors %}
+                       {{ erro }}
+                   {% endfor %}
+                   </div>
+               {% endif %}
+               </div>
+            <div class="d-grid">
+              {{ form.botao_submit(class="btn btn-primary btn-block") }}
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}

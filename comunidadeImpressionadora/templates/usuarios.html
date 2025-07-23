@@ -1,12 +1,18 @@
 {% extends 'base.html'%}
 
+{% block head %}
+<!-- AOS CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+{% endblock %}
+
 {% block body %}
 
-<div class="container">
-    <h1>Usuários</h1>
+<div class="container my-5">
+    <h1 class="text-center mb-5" data-aos="fade-down">Usuários</h1>
+
     {% for usuario in lista_usuarios %}
 
-    <div class="container centralizado-vertical d-flex justify-content-center mb-3"><!-- 🟢 mb-3 para espaçamento -->
+    <div class="container centralizado-vertical d-flex justify-content-center mb-3" data-aos="fade-up" data-aos-duration="800">
 
         <div class="card p-3 w-100" style="max-width: 500px;">
 
@@ -34,7 +40,7 @@
 
                     <div class="d-flex flex-column text-center">
                         <span class="rating">Posts</span>
-                        <span class="number3">0</span>
+                        <span class="number3">{{ usuario.contar_posts()}}</span>
                     </div>
 
                 </div>
@@ -56,5 +62,11 @@
 
     {% endfor %}
 </div>
+
+<!-- AOS JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 
 {% endblock %}

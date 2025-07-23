@@ -19,7 +19,7 @@
             <div class="p-2 mt-3 bg-primary d-flex justify-content-between rounded text-white stats w-100">
 
                 <div class="d-flex flex-column text-center">
-                    <span class="articles">Cursos</span>
+                    <span class="articles">Habilidades</span>
                     {% if 'Não Informado' in current_user.cursos %}
                         <span class="number1">0</span>
                     {% else %}
@@ -29,7 +29,7 @@
 
                 <div class="d-flex flex-column text-center">
                     <span class="rating">Posts</span>
-                    <span class="number3">0</span>
+                    <span class="number3">{{ current_user.contar_posts()}}</span>
                 </div>
 
             </div>
