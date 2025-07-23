@@ -1,9 +1,107 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
+
+{% block head %}
+<!-- AOS CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+<style>
+    .contact-container {
+        max-width: 600px;
+        margin: 80px auto;
+        background: #f8f9fa;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .contact-container h1 {
+        margin-bottom: 24px;
+        color: #333;
+    }
+
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 24px;
+    }
+
+    .contact-info a {
+        text-decoration: none;
+        color: #007bff;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    .contact-info a:hover {
+        color: #0056b3;
+        transform: scale(1.05);
+    }
+
+    .contact-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .contact-button {
+        background: #007bff;
+        color: #fff;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.3s ease;
+        font-size: 16px;
+    }
+
+    .contact-button:hover {
+        background: #0056b3;
+        transform: translateY(-3px);
+    }
+
+    .contact-button i {
+        margin-right: 8px;
+    }
+</style>
+<!-- Font Awesome para ícones -->
+<script src="https://kit.fontawesome.com/YOUR_KIT_CODE.js" crossorigin="anonymous"></script>
+{% endblock %}
 
 {% block body %}
-<div class="container">
-    <h1>segue a meeu contato</h1>
-</div>
+<div class="contact-container">
+    <h1 data-aos="fade-up">Entre em Contato</h1>
     
+    <div class="contact-info">
+        <a href="mailto:lucas.amorim.porciuncula@gmail.com" data-aos="fade-right">
+            <i class="fas fa-envelope"></i> lucas.amorim.porciuncula@gmail.com
+        </a>
+        <a href="tel:+5571996420649" data-aos="fade-left">
+            <i class="fas fa-phone"></i> +55 71 99642-0649
+        </a>
+        <a href="https://www.linkedin.com/in/lucas-amorim-powerbi/" target="_blank" data-aos="fade-right">
+            <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+        <a href="https://github.com/Lucas-1234567890" target="_blank" data-aos="fade-left">
+            <i class="fab fa-github"></i> GitHub
+        </a>
+    </div>
 
+    <div class="contact-buttons">
+        <button class="contact-button" onclick="window.location.href='mailto:lucas.amorim.porciuncula@gmail.com'" data-aos="zoom-in">
+            <i class="fas fa-paper-plane"></i> Enviar Email
+        </button>
+        <button class="contact-button" onclick="window.location.href='https://wa.me/5571996420649'" data-aos="zoom-in">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+        </button>
+    </div>
+</div>
+
+<!-- AOS JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+    AOS.init();
+</script>
 {% endblock %}

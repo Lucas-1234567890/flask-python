@@ -75,7 +75,7 @@
 
 /* Overlay */
 #container .overlay {
-    background: linear-gradient(to right, #FF4B2B, #FF416C);
+    background: linear-gradient(to right, #5700f79d, #0c36f1);
     color: #fff;
     position: relative;
     left: -100%;
@@ -148,8 +148,8 @@
 #container button,
 #container .btn {
     border-radius: 20px;
-    border: 1px solid #FF4B2B;
-    background-color: #FF4B2B;
+    border: 1px solid #0111ee;
+    background-color: #0111ee;
     color: #fff;
     font-size: 12px;
     font-weight: bold;
