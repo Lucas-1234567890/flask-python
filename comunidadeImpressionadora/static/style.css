@@ -1,0 +1,13 @@
+/* Estilos gerais */
+body {
+    background-color: #f5f5f5;
+}
+
+/* Navbar hover */
+.navbar-nav .nav-link:hover {
+    color: #0d6efd;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
