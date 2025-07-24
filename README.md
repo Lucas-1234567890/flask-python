@@ -73,14 +73,20 @@ python main.py
 ```
 Acesse em [http://localhost:5000](https://flask-python-production.up.railway.app/)
 
-⚠️ Observações
+---
+
+⚠️ **Observações**
 O banco de dados usado no deploy é o PostgreSQL via Railway. Localmente, utiliza SQLite.
 
 Todas as tabelas são criadas automaticamente ao rodar o projeto pela primeira vez.
 
-🤝 Contribuições
+---
+
+🤝 **Contribuições**
 Fique à vontade para abrir Issues ou Pull Requests com melhorias, correções ou sugestões.
 
-🧑‍💻 Autor
+---
+
+🧑‍💻 **Autor**
 Lucas Amorim
 Engenheiro de Dados e IA em formação | Analista de Dados
